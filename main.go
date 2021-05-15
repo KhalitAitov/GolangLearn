@@ -1,28 +1,24 @@
 package main
 
-import (
-    "fmt"
-    "net/http"
-)
-
-func hello(w http.ResponseWriter, req *http.Request) {
-
-    fmt.Fprintf(w, "hello\n")
-}
-
-func headers(w http.ResponseWriter, req *http.Request) {
-
-    for name, headers := range req.Header {
-        for _, h := range headers {
-            fmt.Fprintf(w, "%v: %v\n", name, h)
-        }
-    }
-}
+import "fmt"
 
 func main() {
+	var a int
+	var b int
+	var op string
+	//op ="/" "*" "-" "+"
+	op = "/"
+	a = 333
+	b = 4
 
-    http.HandleFunc("/hello", hello)
-    http.HandleFunc("/headers", headers)
+	if op == "-" {
+		fmt.Println(a - b)
+	} else if op == "+" {
+		fmt.Println(a + b)
+	} else if op == "*" {
+		fmt.Println(a * b)
+	} else if op == "/" {
+		fmt.Println(a / b)
+	}
 
-    http.ListenAndServe(":8090", nil)
 }
